@@ -1,5 +1,5 @@
 ---
- - hosts: del
+ - hosts: dev
    gather_facts: no
    tasks:
     - name: checking status
@@ -17,7 +17,8 @@
       state: directory
     - name: copying war file
       copy:
-       src: /tmp/sample
-       dest: /tmp/devops/sample
+       src: /{{samsung}}/gameoflife-0.0.1.war
+       dest: /tmp/devops/gameoflife-0.0.1.war
+       mode: 0777
     - name: executing war file
-      shell: " nohup java -jar sample.war & "
+      shell: "cd /tmp/devops/; nohup java -jar gameoflife-0.0.1.war & "
