@@ -1,0 +1,23 @@
+---
+ - hosts: del
+   gather_facts: no
+   tasks:
+    - name: checking status
+      stat:
+       path: /tmp/devops
+      register: demo
+    - name: delete the folder
+      file:
+       path: /tmp/devops
+       state: absent
+      when: demo.stat.exists == true
+    - name: creating a folder
+      file:
+       path: /tmp/devops
+      state: directory
+    - name: copying war file
+      copy:
+       src: /tmp/sample
+       dest: /tmp/devops/sample
+    - name: executing war file
+      shell: " nohup java -jar sample.war & "
