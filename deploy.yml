@@ -10,7 +10,7 @@
     file:
       path: /tmp/devops
       state: absent
-     when: demo.stat.exists == true
+      when: demo.stat.exists == true
   - name: creating a folder
     file:
      path: /tmp/devops
