@@ -1,25 +1,25 @@
 ---
- - hosts: dev
-   gather_facts: no
-   tasks:
-    - name: checking status
-      stat:
-       path: /tmp/devops
-      register: demo
-    - name: delete the folder
-      file:
-       path: /tmp/devops
-       state: absent
-       when: demo.stat.exists == true
-    - name: creating a folder
-      file:
-       path: /tmp/devops
-      state: directory
-    - name: copying war file
-      copy:
-       src: /{{samsung}}/gameoflife-0.0.1.war
-       dest: /tmp/devops/gameoflife-0.0.1.war
-       mode: 0777
-    - name: executing war file
-      shell: "cd /tmp/devops/; nohup java -jar gameoflife-0.0.1.war & "
-      become: true 
+- hosts: dev
+  gather_facts: no
+  tasks:
+  - name: checking status
+    stat:
+      path: /tmp/devops
+     register: demo
+  - name: delete the folder
+    file:
+      path: /tmp/devops
+      state: absent
+     when: demo.stat.exists == true
+  - name: creating a folder
+    file:
+     path: /tmp/devops
+     state: directory
+  - name: copying war file
+    copy:
+     src: /{{samsung}}/gameoflife-0.0.1.war
+     dest: /tmp/devops/gameoflife-0.0.1.war
+     mode: 0777
+  - name: executing war file
+    shell: "cd /tmp/devops/; nohup java -jar gameoflife-0.0.1.war &"
+    become: true
