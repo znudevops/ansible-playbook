@@ -10,7 +10,7 @@
       file:
        path: /tmp/devops
        state: absent
-      when: demo.stat.exists == true
+       when: demo.stat.exists == true
     - name: creating a folder
       file:
        path: /tmp/devops
@@ -22,3 +22,4 @@
        mode: 0777
     - name: executing war file
       shell: "cd /tmp/devops/; nohup java -jar gameoflife-0.0.1.war & "
+      become: true 
