@@ -5,7 +5,7 @@
   - name: checking status
     stat:
       path: /tmp/devops
-     register: demo
+      register: demo
   - name: delete the folder
     file:
       path: /tmp/devops
